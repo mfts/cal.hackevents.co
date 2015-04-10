@@ -7,8 +7,8 @@ require "sinatra/reloader" if Sinatra::Base.development?
 require "icalendar/tzinfo"
 require "parse-ruby-client"
 
-Parse.init	:application_id => "0MtsNHYPwDTZWj1F1BydIZhGVcLY7CM1ZSv5YqXx",
-			:api_key => "41haXgGmoVVATrwriX5HC8ZzjhYIOUuZ9eOGP8ne"
+Parse.init	:application_id => ENV["APP_KEY"],
+			:api_key => ENV["API_KEY"]
 
 # Monkey patch icalendar to allow for dtstamp
 module Icalendar
@@ -43,7 +43,7 @@ def get_hh_parse_as_ical
 		event.dtstart = event_sdate
 		event.dtend = event_edate
 
-		cal.add_event(event) if event_sdate.gsub(/\D+/i, "").to_i > 0
+		cal.add_event(event) # if event_sdate.gsub(/\D+/i, "").to_i > 0
 	end
 
 	cal.to_ical
