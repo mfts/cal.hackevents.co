@@ -36,7 +36,7 @@ def get_hh_parse_as_ical
 
 		event = Icalendar::Event.new
 		event.summary = event_name
-		event.description = "#{event_name} in #{event_city}. \npowered by Hackevents"
+		event.description = "#{event_name} in #{event_city}. \n\npowered by Hackevents"
 		event.location = event_location
 		event.url = event_url
 		event.url.ical_params = { "VALUE" => "URI" }
