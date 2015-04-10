@@ -22,7 +22,10 @@ def get_hh_parse_as_ical
 	cal.prodid = "-//Hackevents//cal.hackevents.co//EN"
 	cal.dtstamp = Date.new
 
-	query = Parse::Query.new("Hackathon")
+	date_time = DateTime.now
+	parse_date = Parse::Date.new(date_time)
+	
+	query = Parse::Query.new("Hackathon").greater_than("finishDate",parse_date)
 	results = query.get
 
 	results.each do |r|
